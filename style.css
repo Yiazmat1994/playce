@@ -6824,7 +6824,7 @@ form#formCalcularFrete {
    margin-left: 4px;
 }
 
-.open>.dropdown-menu {
+.menu-user-logged.open>.dropdown-menu {
    padding: 10px 0;
    margin: 0;
    box-shadow: 0 0 30px rgba(0,0,0,.2);
