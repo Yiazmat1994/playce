@@ -3735,6 +3735,17 @@ a {
    border-radius: 8px;
 }
 
+.pagina-categoria .secao-principal > .interno h4.titulo {
+   display: none;
+}
+
+.pagina-categoria .secao-principal > .interno {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding-top: 60px;
+}
+
 .listagem .listagem-linha li {
    border: 0;
 }
