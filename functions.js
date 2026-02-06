@@ -1260,7 +1260,7 @@ $(function() {
   
   });
 
-  $('.pagina-categoria .ordenar-listagem.topo').append($('.coluna > .componente > .interno'));
+  $('.pagina-categoria .secao-principal').append($('.coluna > .componente > .interno'));
   
   $('.tabela-pedidos tbody tr').each(function () {
 
