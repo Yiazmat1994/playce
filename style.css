@@ -3729,6 +3729,12 @@ a {
    color: #000;
 }
 
+.pagina-categoria .secao-principal .interno > p {
+   padding: 24px;
+   background: #f1f1f1;
+   border-radius: 8px;
+}
+
 .listagem .listagem-linha li {
    border: 0;
 }
