@@ -981,7 +981,7 @@ $(document).on('click', '.btn-mais', function() {
           });
 
           $('.pagina-categoria .conteudo.span9 > .titulo').append(`
-            <button class="cat-filter botao">Filtrar<i></i></button>
+            <button class="cat-filter botao">Ordenar por<i></i></button>
         `);
         
         $('.pagina-categoria').append(`
@@ -1015,7 +1015,7 @@ $(document).on('click', '.btn-mais', function() {
             }
         })(10); // Tenta até 10 vezes, com intervalo de 100ms
         
-        
+        $('.filter-container ul.dropdown-menu.pull-right').prepend(`<i class="close-filter"></i>`)
     } // fecha o else do mobile
 
 // Input de quantidade no carrinho (página de produto)
@@ -1500,5 +1500,189 @@ $('.right-order').append(`
       `);
     }
   }
+
+
+
+      /* =====================================================
+       ESTRUTURA DOS FILTROS
+    ===================================================== */
+    $('.conteudo .ordenar-listagem.topo .row-fluid').after(`
+        <div class="filter-pg-cat">
+            <div class="filter-row">
+                <div class="filter-group filtro-plataforma" data-title="Plataforma">
+                    <button class="filter-btn">Plataforma <span class="arrow"></span></button>
+                    <div class="drop-cat"></div>
+                </div>
+
+                <div class="filter-group filtro-tipo" data-title="Tipo">
+                    <button class="filter-btn">Tipo <span class="arrow"></span></button>
+                    <div class="drop-cat"></div>
+                </div>
+
+                <div class="filter-group filtro-marca" data-title="Por marcas">
+                    <button class="filter-btn">Marcas <span class="arrow"></span></button>
+                    <div class="drop-cat"></div>
+                </div>
+
+                <div class="filter-group filtro-preco" data-title="Filtrar por preço">
+                    <button class="filter-btn">Preço <span class="arrow"></span></button>
+                    <div class="drop-cat"></div>
+                </div>
+            </div>
+        </div>
+    `);
+
+    /* =====================================================
+       MOVE OS ITENS
+    ===================================================== */
+    $('.menu.lateral.outras ul.nivel-um > li').appendTo($('.filtro-plataforma .drop-cat'));
+    $('.menu.lateral:not(.outras) ul.nivel-dois > li').appendTo($('.filtro-tipo .drop-cat'));
+
+    var $marcas = $('.faceta-marca .atributo-lista ul > li');
+    $marcas.length
+        ? $marcas.appendTo($('.filtro-marca .drop-cat'))
+        : $('.filtro-marca .drop-cat').append('<span class="sem-resultado">Nenhuma marca encontrada</span>');
+
+    var $precos = $('.faceta-preco .atributo-lista ul > li');
+    $precos.length
+        ? $precos.appendTo($('.filtro-preco .drop-cat'))
+        : $('.filtro-preco .drop-cat').append('<span class="sem-resultado">Nenhum preço encontrado</span>');
+
+    /* =====================================================
+       HEADER MOBILE DOS DROPS
+    ===================================================== */
+    function montarHeaderMobile() {
+        if ($(window).width() >= 768) return;
+
+        $('.filter-group').each(function () {
+            var $drop = $(this).find('.drop-cat');
+            if ($drop.find('.drop-header').length) return;
+
+            $drop.prepend(`
+                <div class="drop-header">
+                    <span class="drop-title">${$(this).data('title')}</span>
+                    <button class="drop-close">
+                        <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/close.svg" alt="fechar">
+                    </button>
+                </div>
+            `);
+        });
+    }
+
+    montarHeaderMobile();
+
+    /* =====================================================
+       DROPDOWN MOBILE — TOGGLE REAL
+    ===================================================== */
+    $(document).on('click', '.filter-btn', function (e) {
+
+        if ($(window).width() < 768) {
+            e.preventDefault();
+
+            var $drop = $(this).closest('.filter-group').find('.drop-cat');
+            var isOpen = $drop.hasClass('drop-active');
+
+            // fecha todos
+            $('.drop-cat')
+                .removeClass('drop-active drop-show')
+                .css('display', 'none');
+
+            // abre somente se não estava aberto
+            if (!isOpen) {
+                $drop
+                    .css('display', 'block')
+                    .addClass('drop-active');
+
+                setTimeout(function () {
+                    $drop.addClass('drop-show');
+                }, 10);
+            }
+        }
+    });
+
+    // Fechar pelo botão X
+    $(document).on('click', '.drop-close', function () {
+
+        var $drop = $(this).closest('.drop-cat');
+
+        $drop.removeClass('drop-show');
+
+        setTimeout(function () {
+            $drop
+                .removeClass('drop-active')
+                .css('display', 'none');
+        }, 300);
+    });
+
+    /* =====================================================
+       CHIPS (DESKTOP + MOBILE)
+    ===================================================== */
+    var $tituloPagina = $('.ordenar-listagem.topo .row-fluid h1.titulo');
+
+    if (!$('.filtros-ativos-desktop').length) {
+        $tituloPagina.after('<div class="filtros-ativos filtros-ativos-desktop"></div>');
+    }
+
+    if (!$('.filtros-ativos-mobile').length) {
+        $('.filter-pg-cat').prepend('<div class="filtros-ativos filtros-ativos-mobile"></div>');
+    }
+
+    function montarFiltrosAtivosPagina() {
+
+        var isMobile = $(window).width() < 768;
+        var $container = isMobile
+            ? $('.filtros-ativos-mobile')
+            : $('.filtros-ativos-desktop');
+
+        $('.filtros-ativos').empty();
+
+        var totalAtivos = 0;
+
+        $('.filter-pg-cat .drop-cat li.active').each(function () {
+            var texto = $(this).find('label, a').first().text().trim();
+            var href = $(this).find('a').attr('href');
+            if (!href) return;
+
+            totalAtivos++;
+
+            $container.append(`
+                <div class="filtro-chip" data-href="${href}">
+                    <span>${texto}</span>
+                    <button class="remover-filtro">
+                        <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/close.svg">
+                    </button>
+                </div>
+            `);
+        });
+
+        if (totalAtivos > 0) {
+            $container.append('<button class="limpar-todos-filtros">Limpar todos</button>');
+        }
+    }
+
+    montarFiltrosAtivosPagina();
+
+    /* =====================================================
+       AÇÕES DOS CHIPS
+    ===================================================== */
+    $(document).on('click', '.remover-filtro', function (e) {
+        e.preventDefault();
+        var href = $(this).closest('.filtro-chip').data('href');
+        if (href) window.location.href = href;
+    });
+
+    $(document).on('click', '.limpar-todos-filtros', function (e) {
+        e.preventDefault();
+        window.location.href = window.location.pathname;
+    });
+
+    /* =====================================================
+       RESIZE
+    ===================================================== */
+    $(window).on('resize', function () {
+        montarHeaderMobile();
+        montarFiltrosAtivosPagina();
+    });
+
 
 });
