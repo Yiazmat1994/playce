@@ -5934,7 +5934,7 @@ input#calcularFrete, input#usarCupom, #btn-cupom, #btn-frete {
 	content: "";
 	width: 18px;
 	height: 18px;
-	background: url(https://cdn.awsli.com.br/2830/2830294/arquivos/icon-filter.svg) center no-repeat;
+	background: url(https://cdn.awsli.com.br/2830/2830294/arquivos/chev-down.svg) center no-repeat;
 	background-size: 100%;
 	display: block;
 }
