@@ -1296,69 +1296,81 @@ $(function() {
 });
 
 
-$(document).ready(function () {
+// =====================================================
+// FINALIZAÇÃO DO PEDIDO
+// =====================================================
 
-    // =====================================================
-    // FINALIZAÇÃO DO PEDIDO
-    // =====================================================
+$(document).ready(function(){
+
     $('.pedido-finalizado .cabecalho-interno').append(`
-      <div class="right-order">
+    <div class="right-order">
         <div class="right-container">
-          <strong class="order-title">Pedido #</strong>
+            <strong class="order-title">Pedido #</strong>
         </div>
-      </div>
+    </div>
     `);
-  
+    
     $('.order-title').append($('.numero-pedido'));
-  
-    // =====================================================
-    // STATUS — AGUARDANDO PAGAMENTO
-    // =====================================================
-    var aguardandoPagamento = $('.pedido-finalizado')
-      .find('span')
-      .filter(function () {
-        return $(this).text().toLowerCase().includes('aguardando pagamento');
-      });
-  
-    if (aguardandoPagamento.length) {
-      $('body').addClass('aguardando-pedido');
-  
-      if (!$('.right-container .order-status').length) {
-        $('.right-container').append(`
+    
+    $(document).ready(function () {
+      // Procura o texto "Aguardando pagamento" dentro da área do pedido finalizado
+      var aguardandoPagamento = $('.pedido-finalizado')
+        .find('span')
+        .filter(function () {
+          return $(this).text().toLowerCase().includes('aguardando pagamento');
+        });
+    
+      if (aguardandoPagamento.length) {
+        // Adiciona a classe no body
+        $('body').addClass('aguardando-pedido');
+    
+        // HTML que será inserido
+        var statusHtml = `
           <div class="order-status aguardando-pagamento">
             <span>Status</span>
             <strong>Aguardando Pagamento</strong>
           </div>
-        `);
+        `;
+    
+        // Insere no right-container (evita duplicar)
+        if (!$('.right-container .order-status').length) {
+          $('.right-container').append(statusHtml);
+        }
       }
-    }
-  
-    // =====================================================
-    // RESUMO DO PEDIDO
-    // =====================================================
-    var $table = $('.resumo-compra table');
-    if ($table.length && $('.right-container').length) {
-  
+    });
+    
+    $(document).ready(function () {
+      var $table = $('.resumo-compra table');
+    
+      if (!$table.length || !$('.right-container').length) return;
+    
       var productsHtml = '';
-  
+    
+      // =========================
+      // PRODUTOS
+      // =========================
       $table.find('tbody tr').each(function () {
         var $row = $(this);
+    
+        var $img = $row.find('.imagem img');
         var $info = $row.find('.produto-info');
+        var $price = $row.find('.preco-produto strong');
+    
+        // Só processa linha de produto
         if (!$info.length) return;
-  
-        var image = $row.find('.imagem img').attr('src') || '';
-        var title = $info
-          .clone()
-          .find('.sku, small, br')
-          .remove()
-          .end()
-          .text()
-          .replace(/sku[:\s]*\w+/i, '')
-          .trim();
-  
-        var quantity = $row.find('td').eq(2).text().trim();
-        var price = $row.find('.preco-produto strong').text().trim();
-  
+            
+            var image = $img.attr('src') || '';
+            var title = $info
+                                  .clone()               
+                                  .find('.sku, small, br')
+                                  .remove()              
+                                  .end()
+                                  .text()
+                                  .replace(/sku[:\s]*\w+/i, '')
+                                  .trim();
+            var quantity = $row.find('td').eq(2).text().trim();
+            var price = $price.text().trim();
+    
         productsHtml += `
           <div class="product-card">
             <div class="product-top">
@@ -1372,157 +1384,315 @@ $(document).ready(function () {
           </div>
         `;
       });
-  
+    
+      // =========================
+      // RESUMO
+      // =========================
       var subtotal = $table.find('.subtotal strong').text().trim();
-      var frete = $table.find('.frete-preco').text().replace(/valor\s*envio[:\s]*/i, '').trim();
+      var frete = $table.find('.frete-preco')
+      .text()
+      .replace(/valor\s*envio[:\s]*/i, '')
+      .trim();
       var total = $table.find('.total strong').text().trim();
-  
+    
+      var resumeHtml = `
+        <h3>Resumo</h3>
+        <div class="resume-card">
+    
+          <div class="resume-row">
+            <span>Subtotal</span>
+            <strong>${subtotal}</strong>
+          </div>
+    
+          <div class="resume-row">
+            <span>Valor do envio</span>
+            <strong>${frete}</strong>
+          </div>
+    
+          <div class="resume-row total">
+            <span>Total</span>
+            <strong>${total}</strong>
+          </div>
+        </div>
+      `;
+    
+      // =========================
+      // INSERÇÃO FINAL
+      // =========================
       if (!$('.right-container .order-summary-custom').length) {
         $('.right-container').append(`
           <div class="order-summary-custom">
             ${productsHtml}
-            <h3>Resumo</h3>
-            <div class="resume-card">
-              <div class="resume-row">
-                <span>Subtotal</span>
-                <strong>${subtotal}</strong>
-              </div>
-              <div class="resume-row">
-                <span>Valor do envio</span>
-                <strong>${frete}</strong>
-              </div>
-              <div class="resume-row total">
-                <span>Total</span>
-                <strong>${total}</strong>
-              </div>
-            </div>
+            ${resumeHtml}
           </div>
         `);
       }
-    }
-  
-    // =====================================================
-    // INFO LATERAL
-    // =====================================================
+    });
+    
     $('.right-order').append(`
-      <div class="order-info">
+    
+    <div class="order-info">
         <div class="order-info-item">
-          <i><img src="https://cdn.awsli.com.br/2830/2830294/arquivos/hand_package.svg"></i>
-          <span>O código do seu pedido será enviado por <strong>e-mail</strong>.</span>
+            <i><img src="https://cdn.awsli.com.br/2830/2830294/arquivos/hand_package.svg" alt="Envio por e-mail"></i><span>O código do seu pedido será enviado por <strong>e-mail</strong>.</span>
         </div>
         <div class="order-info-item">
-          <i><img src="https://cdn.awsli.com.br/2830/2830294/arquivos/package_2.svg"></i>
-          <span>Você pode acessar o seu código na página <strong>Meus pedidos</strong>.</span>
+            <i><img src="https://cdn.awsli.com.br/2830/2830294/arquivos/package_2.svg" alt="Envio por e-mail"></i><span>Você pode acessar o seu código na página <strong>Meus pedidos</strong>.</span>
         </div>
-      </div>
+    </div>
+    
     `);
-  
-    // =====================================================
-    // DADOS COMUNS
-    // =====================================================
-    var orderId = $('.numero-pedido').text().replace(/\D/g, '').trim();
-    if (!orderId) return;
-  
-    var orderUrl = `https://www.playce.com.br/conta/pedido/${orderId}/listar_reduzido`;
-  
-    // =====================================================
-    // PEDIDO PAGO
-    // =====================================================
-    var $successAlert = $('.status-pagamento .alert-success #mensagemPago');
-    if ($successAlert.length && !$successAlert.next('.acessar-pedido-wrapper').length) {
-      $successAlert.after(`
-        <div class="acessar-pedido-wrapper pedido-pago">
-          <a href="${orderUrl}" class="botao principal acessar-pedido">Acessar pedido</a>
-          <p class="acessar-pedido-texto">
-            Você pode acompanhar os detalhes do seu pedido a qualquer momento.
-          </p>
-        </div>
-      `);
-    }
-  
-    // =====================================================
-    // PEDIDO ENTREGUE
-    // =====================================================
-    var $mensagem = $('.status-pagamento .alert.alert-warning .mensagem');
-    var titulo = $mensagem.find('h3').text().toLowerCase();
-  
-    if ($mensagem.length && titulo.includes('pedido entregue')) {
-  
-      $mensagem.find('.lead')
-        .addClass('entregue')
-        .html(`
-          <span>
-            Seu pedido foi entregue.<br>
-            <strong>Acesse o código clicando no botão abaixo.</strong>
-          </span>
-        `);
-  
-      if (!$mensagem.next('.acessar-pedido-wrapper').length) {
-        $mensagem.after(`
-          <div class="acessar-pedido-wrapper pedido-entregue">
-            <a href="${orderUrl}" class="botao principal acessar-pedido">Acessar pedido</a>
+    
+    // =========================
+      // DADOS COMUNS
+      // =========================
+      var orderId = $('.numero-pedido')
+        .text()
+        .replace(/\D/g, '')
+        .trim();
+    
+      if (!orderId) return;
+    
+      var orderUrl = `https://www.playce.com.br/conta/pedido/${orderId}/listar_reduzido`;
+    
+      // =====================================================
+      // PEDIDO PAGO (alert-success)
+      // =====================================================
+      var $successAlert = $('.status-pagamento .alert-success #mensagemPago');
+    
+      if ($successAlert.length && !$successAlert.next('.acessar-pedido-wrapper').length) {
+        $successAlert.after(`
+          <div class="acessar-pedido-wrapper pedido-pago">
+            <a href="${orderUrl}" class="botao principal acessar-pedido">
+              Acessar pedido
+            </a>
             <p class="acessar-pedido-texto">
-              Este pedido já foi entregue. Você pode consultar os detalhes sempre que quiser.
+              Você pode acompanhar os detalhes do seu pedido a qualquer momento.
             </p>
           </div>
         `);
       }
-    }
-  
-    // =====================================================
-    // FILTROS — INSERÇÃO + DEPENDÊNCIAS (CORRIGIDO)
-    // =====================================================
-    (function tryInserirFiltros(retries) {
-      var $target = $('.conteudo .ordenar-listagem.topo .row-fluid');
-  
-      if ($target.length) {
-  
-        $target.after(`
-          <div class="filter-pg-cat">
-            <div class="filter-row">
-              <div class="filter-group filtro-plataforma" data-title="Plataforma">
-                <button class="filter-btn">Plataforma <span class="arrow"></span></button>
-                <div class="drop-cat"></div>
-              </div>
-              <div class="filter-group filtro-tipo" data-title="Tipo">
-                <button class="filter-btn">Tipo <span class="arrow"></span></button>
-                <div class="drop-cat"></div>
-              </div>
-              <div class="filter-group filtro-marca" data-title="Por marcas">
-                <button class="filter-btn">Marcas <span class="arrow"></span></button>
-                <div class="drop-cat"></div>
-              </div>
-              <div class="filter-group filtro-preco" data-title="Filtrar por preço">
-                <button class="filter-btn">Preço <span class="arrow"></span></button>
-                <div class="drop-cat"></div>
-              </div>
+    
+      // =====================================================
+      // PEDIDO ENTREGUE (alert-warning)
+      // =====================================================
+      var $mensagem = $('.status-pagamento .alert.alert-warning .mensagem');
+      var titulo = $mensagem.find('h3').text().trim().toLowerCase();
+    
+      if ($mensagem.length && titulo.includes('pedido entregue')) {
+    
+        // =========================
+        // NOVO: ALTERA TEXTO DO .lead
+        // =========================
+            $mensagem.find('.lead')
+          .addClass('entregue')
+          .html(`
+            <span>
+              Seu pedido foi entregue.<br>
+              <strong>Acesse o código clicando no botão abaixo.</strong>
+            </span>
+          `);
+    
+        // =========================
+        // BOTÃO (mantém o que já existia)
+        // =========================
+        if (!$mensagem.next('.acessar-pedido-wrapper').length) {
+          $mensagem.after(`
+            <div class="acessar-pedido-wrapper pedido-entregue">
+              <a href="${orderUrl}" class="botao principal acessar-pedido">
+                Acessar pedido
+              </a>
+              <p class="acessar-pedido-texto">
+                Este pedido já foi entregue. Você pode consultar os detalhes sempre que quiser.
+              </p>
             </div>
-          </div>
+          `);
+        }
+      }
+    
+    });
+
+    $(document).ready(function () {
+
+        /* =====================================================
+           ESTRUTURA DOS FILTROS
+        ===================================================== */
+        $('.conteudo .ordenar-listagem.topo .row-fluid').after(`
+            <div class="filter-pg-cat">
+                <div class="filter-row">
+                    <div class="filter-group filtro-plataforma" data-title="Plataforma">
+                        <button class="filter-btn">Plataforma <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
+    
+                    <div class="filter-group filtro-tipo" data-title="Tipo">
+                        <button class="filter-btn">Tipo <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
+    
+                    <div class="filter-group filtro-marca" data-title="Por marcas">
+                        <button class="filter-btn">Marcas <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
+    
+                    <div class="filter-group filtro-preco" data-title="Filtrar por preço">
+                        <button class="filter-btn">Preço <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
+                </div>
+            </div>
         `);
-  
-        // ⬇️ AGORA TUDO QUE DEPENDE DOS FILTROS FICA AQUI
-        $('.menu.lateral.outras ul.nivel-um > li')
-          .appendTo($('.filtro-plataforma .drop-cat'));
-  
-        $('.menu.lateral:not(.outras) ul.nivel-dois > li')
-          .appendTo($('.filtro-tipo .drop-cat'));
-  
+    
+        /* =====================================================
+           MOVE OS ITENS
+        ===================================================== */
+        $('.menu.lateral.outras ul.nivel-um > li').appendTo($('.filtro-plataforma .drop-cat'));
+        $('.menu.lateral:not(.outras) ul.nivel-dois > li').appendTo($('.filtro-tipo .drop-cat'));
+    
         var $marcas = $('.faceta-marca .atributo-lista ul > li');
         $marcas.length
-          ? $marcas.appendTo($('.filtro-marca .drop-cat'))
-          : $('.filtro-marca .drop-cat').append('<span class="sem-resultado">Nenhuma marca encontrada</span>');
-  
+            ? $marcas.appendTo($('.filtro-marca .drop-cat'))
+            : $('.filtro-marca .drop-cat').append('<span class="sem-resultado">Nenhuma marca encontrada</span>');
+    
         var $precos = $('.faceta-preco .atributo-lista ul > li');
         $precos.length
-          ? $precos.appendTo($('.filtro-preco .drop-cat'))
-          : $('.filtro-preco .drop-cat').append('<span class="sem-resultado">Nenhum preço encontrado</span>');
-  
-      } else if (retries > 0) {
-        setTimeout(function () {
-          tryInserirFiltros(retries - 1);
-        }, 100);
-      }
-    })(10);
-  
-  });
-  
+            ? $precos.appendTo($('.filtro-preco .drop-cat'))
+            : $('.filtro-preco .drop-cat').append('<span class="sem-resultado">Nenhum preço encontrado</span>');
+    
+        /* =====================================================
+           HEADER MOBILE DOS DROPS
+        ===================================================== */
+        function montarHeaderMobile() {
+            if ($(window).width() >= 768) return;
+    
+            $('.filter-group').each(function () {
+                var $drop = $(this).find('.drop-cat');
+                if ($drop.find('.drop-header').length) return;
+    
+                $drop.prepend(`
+                    <div class="drop-header">
+                        <span class="drop-title">${$(this).data('title')}</span>
+                        <button class="drop-close">
+                            <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/close.svg" alt="fechar">
+                        </button>
+                    </div>
+                `);
+            });
+        }
+    
+        montarHeaderMobile();
+    
+        /* =====================================================
+           DROPDOWN MOBILE — TOGGLE REAL
+        ===================================================== */
+        $(document).on('click', '.filter-btn', function (e) {
+    
+            if ($(window).width() < 768) {
+                e.preventDefault();
+    
+                var $drop = $(this).closest('.filter-group').find('.drop-cat');
+                var isOpen = $drop.hasClass('drop-active');
+    
+                // fecha todos
+                $('.drop-cat')
+                    .removeClass('drop-active drop-show')
+                    .css('display', 'none');
+    
+                // abre somente se não estava aberto
+                if (!isOpen) {
+                    $drop
+                        .css('display', 'block')
+                        .addClass('drop-active');
+    
+                    setTimeout(function () {
+                        $drop.addClass('drop-show');
+                    }, 10);
+                }
+            }
+        });
+    
+        // Fechar pelo botão X
+        $(document).on('click', '.drop-close', function () {
+    
+            var $drop = $(this).closest('.drop-cat');
+    
+            $drop.removeClass('drop-show');
+    
+            setTimeout(function () {
+                $drop
+                    .removeClass('drop-active')
+                    .css('display', 'none');
+            }, 300);
+        });
+    
+        /* =====================================================
+           CHIPS (DESKTOP + MOBILE)
+        ===================================================== */
+        var $tituloPagina = $('.ordenar-listagem.topo .row-fluid h1.titulo');
+    
+        if (!$('.filtros-ativos-desktop').length) {
+            $tituloPagina.after('<div class="filtros-ativos filtros-ativos-desktop"></div>');
+        }
+    
+        if (!$('.filtros-ativos-mobile').length) {
+            $('.filter-pg-cat').prepend('<div class="filtros-ativos filtros-ativos-mobile"></div>');
+        }
+    
+        function montarFiltrosAtivosPagina() {
+    
+            var isMobile = $(window).width() < 768;
+            var $container = isMobile
+                ? $('.filtros-ativos-mobile')
+                : $('.filtros-ativos-desktop');
+    
+            $('.filtros-ativos').empty();
+    
+            var totalAtivos = 0;
+    
+            $('.filter-pg-cat .drop-cat li.active').each(function () {
+                var texto = $(this).find('label, a').first().text().trim();
+                var href = $(this).find('a').attr('href');
+                if (!href) return;
+    
+                totalAtivos++;
+    
+                $container.append(`
+                    <div class="filtro-chip" data-href="${href}">
+                        <span>${texto}</span>
+                        <button class="remover-filtro">
+                            <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/close.svg">
+                        </button>
+                    </div>
+                `);
+            });
+    
+            if (totalAtivos > 0) {
+                $container.append('<button class="limpar-todos-filtros">Limpar todos</button>');
+            }
+        }
+    
+        montarFiltrosAtivosPagina();
+    
+        /* =====================================================
+           AÇÕES DOS CHIPS
+        ===================================================== */
+        $(document).on('click', '.remover-filtro', function (e) {
+            e.preventDefault();
+            var href = $(this).closest('.filtro-chip').data('href');
+            if (href) window.location.href = href;
+        });
+    
+        $(document).on('click', '.limpar-todos-filtros', function (e) {
+            e.preventDefault();
+            window.location.href = window.location.pathname;
+        });
+    
+        /* =====================================================
+           RESIZE
+        ===================================================== */
+        $(window).on('resize', function () {
+            montarHeaderMobile();
+            montarFiltrosAtivosPagina();
+        });
+    
+    });
+    
