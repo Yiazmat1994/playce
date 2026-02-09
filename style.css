@@ -8711,10 +8711,6 @@ a#imprimirBoleto {
 	border-radius: 0px;
 }
 
-.filter-group:hover .drop-cat {
-	display: block;
-}
-
 .drop-cat li {
 	padding: 20px 24px;
 	height: 50px;
@@ -8868,6 +8864,10 @@ a#imprimirBoleto {
 
 .filter-group:hover .filter-btn {
 	background: #f1f1f1;
+}
+
+.filter-group:hover .drop-cat {
+	display: block;
 }
 
 }
