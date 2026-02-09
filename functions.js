@@ -1503,34 +1503,44 @@ $('.right-order').append(`
 
 
 
-      /* =====================================================
-       ESTRUTURA DOS FILTROS
-    ===================================================== */
-    $('.conteudo .ordenar-listagem.topo .row-fluid').after(`
-        <div class="filter-pg-cat">
-            <div class="filter-row">
-                <div class="filter-group filtro-plataforma" data-title="Plataforma">
-                    <button class="filter-btn">Plataforma <span class="arrow"></span></button>
-                    <div class="drop-cat"></div>
-                </div>
+      // =====================================================
+      // ESTRUTURA DOS FILTROS (tentando até conseguir)
+      // =====================================================
+      (function tryInserirFiltros(retries) {
+        var $target = $('.conteudo .ordenar-listagem.topo .row-fluid');
+        if ($target.length) {
+          $target.after(`
+            <div class="filter-pg-cat">
+                <div class="filter-row">
+                    <div class="filter-group filtro-plataforma" data-title="Plataforma">
+                        <button class="filter-btn">Plataforma <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
 
-                <div class="filter-group filtro-tipo" data-title="Tipo">
-                    <button class="filter-btn">Tipo <span class="arrow"></span></button>
-                    <div class="drop-cat"></div>
-                </div>
+                    <div class="filter-group filtro-tipo" data-title="Tipo">
+                        <button class="filter-btn">Tipo <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
 
-                <div class="filter-group filtro-marca" data-title="Por marcas">
-                    <button class="filter-btn">Marcas <span class="arrow"></span></button>
-                    <div class="drop-cat"></div>
-                </div>
+                    <div class="filter-group filtro-marca" data-title="Por marcas">
+                        <button class="filter-btn">Marcas <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
 
-                <div class="filter-group filtro-preco" data-title="Filtrar por preço">
-                    <button class="filter-btn">Preço <span class="arrow"></span></button>
-                    <div class="drop-cat"></div>
+                    <div class="filter-group filtro-preco" data-title="Filtrar por preço">
+                        <button class="filter-btn">Preço <span class="arrow"></span></button>
+                        <div class="drop-cat"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    `);
+          `);
+          // Após inserir, siga para o restante do código (continue normalmente após esta função)
+        } else if (retries > 0) {
+          setTimeout(function () {
+            tryInserirFiltros(retries - 1);
+          }, 100);
+        }
+      })(10); // Tenta até 10 vezes, com intervalo de 100ms
 
     /* =====================================================
        MOVE OS ITENS
