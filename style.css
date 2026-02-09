@@ -8672,6 +8672,7 @@ a#imprimirBoleto {
 	background: #fff;
 	border-right: 1px solid #d8d8d8;
 	transition: all 0.4s;
+   color: #000!important;
 }
 
 .filter-group:last-child .filter-btn {
@@ -8855,16 +8856,22 @@ a#imprimirBoleto {
 	font-size: 14px;
 }
 
-.filter-group:hover .filter-btn .arrow {
-	transform: rotate(180deg);
-}
+@media screen and (min-width: 768px) {
 
 .filter-group .filter-btn .arrow {
 	transition: all 0.4s;
 }
+
+.filter-group:hover .filter-btn .arrow {
+	transform: rotate(180deg);
+}
+
 .filter-group:hover .filter-btn {
 	background: #f1f1f1;
 }
+
+}
+
 
 @media screen and (max-width: 768px) {
 	.filter-row {
