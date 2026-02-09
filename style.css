@@ -3729,21 +3729,24 @@ a {
    color: #000;
 }
 
-.pagina-categoria .secao-principal .interno > p {
+/* .pagina-categoria .secao-principal .interno > p {
    padding: 24px;
    background: #f1f1f1;
    border-radius: 8px;
-}
+} */
 
 .pagina-categoria .secao-principal > .interno h4.titulo {
    display: none;
 }
 
 .pagina-categoria .secao-principal > .interno {
+   padding: 24px;
+   background: #f1f1f1;
+   border-radius: 8px;
+   width: 100%;
+   box-sizing: border-box;
    display: flex;
    flex-direction: column;
-   width: 100%;
-   padding-top: 60px;
 }
 
 .listagem .listagem-linha li {
@@ -8730,7 +8733,7 @@ a#imprimirBoleto {
 .pagina-categoria .conteudo.span9,
 .pagina-busca .conteudo.span9 {
 	width: 100% !important;
-	margin: 0;
+	margin: 0 0 60px;
 }
 
 .pagina-busca .filter-group.filtro-plataforma,
