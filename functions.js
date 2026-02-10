@@ -1509,6 +1509,15 @@ if (!$mensagem.next('.acessar-pedido-wrapper').length) {
 }
 }
 
+$('.alert').each(function () {
+    var $alert = $(this);
+    var textoH3 = $alert.find('h3').text().trim();
+
+    if (textoH3.toLowerCase() === 'pedido enviado') {
+      $alert.addClass('p-enviado');
+    }
+  });
+
 });
 
 $(document).ready(function () {

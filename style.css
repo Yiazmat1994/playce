@@ -8324,7 +8324,7 @@ div#formasEnvio {
 	padding: 16px;
 	display: flex;
 	justify-content: space-between;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .product-bottom strong {
@@ -8355,19 +8355,19 @@ div#formasEnvio {
 .resume-card .resume-row {
 	padding: 24px 32px;
 	border-bottom: 1px solid #e5e5e5;
-	font-size: 18px;
+	font-size: 16px;
 	display: flex;
 	justify-content: space-between !important;
 	color: #000;
 }
 
 .resume-card .resume-row.total span {
-	font-size: 24px;
+	font-size: 20px;
 	color: #000;
 }
 
 .resume-card .resume-row.total strong {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
@@ -8388,8 +8388,8 @@ div#formasEnvio {
 }
 
 .order-info-item i {
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -8401,7 +8401,7 @@ div#formasEnvio {
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .order-info-item span {
@@ -8477,7 +8477,8 @@ div#formasEnvio {
 	margin: 0 auto 20px;
 }
 
-.status-pagamento .alert-warning .lead.entregue:before {
+.status-pagamento .alert-warning .lead.entregue:before,
+.pedido-finalizado .cabecalho-interno .status-pagamento .p-enviado p.lead:before {
 	content: '';
 	display: block;
 	background: url(https://cdn.awsli.com.br/2830/2830294/arquivos/entregue.svg)
@@ -8530,7 +8531,7 @@ a#imprimirBoleto {
 
 .status-pagamento .alert-success .lead:after {
 	content: 'Estamos preparando o seu pedido. Assim que o código for liberado, você poderá acessá-lo por e-mail ou pela página Meus pedidos.';
-	font-size: 24px !important;
+	font-size: 18px !important;
 	line-height: 120%;
 	color: var(--color-black);
 }
@@ -8602,6 +8603,19 @@ a#imprimirBoleto {
 .botao-pagamento,
 .botao-pagamento .status-pagamento {
 	height: 100%;
+}
+
+.p-enviado {
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.pedido-finalizado .cabecalho-interno .status-pagamento .p-enviado p.lead {
+   font-size: 18px;
+   color: #000;
 }
 
 @media screen and (min-width: 768px) {
