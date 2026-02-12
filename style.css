@@ -5332,7 +5332,7 @@ h2.bn-featured-title {
 .menu.superior .nivel-um {
    display: block !important;
    position: fixed;
-   left: -100%;
+   left: -200%;
    top: 0!Important;
    z-index: 1000;
    transition: all .5s;
