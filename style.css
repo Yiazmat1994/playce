@@ -8442,7 +8442,7 @@ div#formasEnvio {
 }
 
 .pedido-finalizado .cabecalho-interno .status-pagamento .lead {
-	font-size: 24px;
+	font-size: 16px;
 	font-weight: normal;
 	line-height: 130%;
 }
@@ -8541,7 +8541,7 @@ a#imprimirBoleto {
 	flex-direction: column;
 	align-items: center;
 	gap: 10px;
-	padding-top: 24px;
+	padding-top: 16px;
 }
 
 .acessar-pedido-wrapper .botao {
