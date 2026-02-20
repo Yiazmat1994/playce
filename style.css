@@ -91,12 +91,13 @@
 
       .banner-featured.append-featured {
          min-height: 610px;
-         display: flex     ;
+         display: flex;
          align-items: center;
          justify-content: center;
          background: var(--featured-home) center no-repeat;
-         background-color: #20242B;
+         background-color: transparent;
          margin-top: 50px;
+         background-size: 100%;
       }
 
       .container-featured {
@@ -5175,6 +5176,7 @@ a.banner-featured.append-featured {
    margin-top: 10px;
    background: var(--featured-home-mobile) center no-repeat;
    min-height: 700px;
+   background-size: 100%;
 }
 
 img.bn-featured-image {
