@@ -4269,6 +4269,7 @@ a {
     border-radius: 10px;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
 }
 
 .about-banner-content {
@@ -8965,4 +8966,18 @@ a#imprimirBoleto {
 		justify-content: flex-start;
 		gap: 4px;
 	}
+}
+
+
+@media screen and (min-width: 768px) {
+   .about-banner-description p:last-child {
+      max-height: 0;
+  }
+
+  .about-banner-image {
+   position: absolute;
+   top: auto;
+   bottom: 0;
+   right: 0;
+}
 }

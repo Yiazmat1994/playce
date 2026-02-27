@@ -132,7 +132,7 @@ $('.pagina-inicial #barraNewsletter').before(`
         </button>
       </div>
       <div class="about-banner-image">
-        <img src="https://cdn.awsli.com.br/2391/2391623/arquivos/char-playce.png" alt="Personagem Samurai" />
+        <img src="https://cdn.awsli.com.br/2391/2391623/arquivos/char-playce-1.png" alt="Personagem Samurai" />
       </div>
     </div>
     `);
