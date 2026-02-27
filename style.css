@@ -4306,9 +4306,9 @@ a {
     color: var(--color-black);
 }
 
-.about-banner-description p:first-child {
+/* .about-banner-description p:first-child {
     font-weight: 500;
-}
+} */
 
 .about-banner-description {
     margin: 10px auto;
