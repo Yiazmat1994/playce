@@ -108,17 +108,23 @@ $('.pagina-inicial #barraNewsletter').before(`
     <div class="about-banner">
       <div class="about-banner-content">
         <div class="about-banner-icon-title">
-          <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/controller.png" alt="Mascote Playce" class="about-banner-icon" />
+          <!--<img src="https://cdn.awsli.com.br/2830/2830294/arquivos/controller.png" alt="Mascote Playce" class="about-banner-icon" />-->
           <div class="about-banner-title">
-            <h2>Somos a Playce!</h2>
+            <h2>Gift Cards Online com Entrega Imediata e Pagamento Seguro | Playce</h2>
           </div>
         </div>
         <div class="about-banner-description">
-          <p>Uma empresa especializada em gift cards para videogames, fundada em 2020.</p>
+          <p>Na Playce você compra gift cards online com entrega imediata, pagamento seguro e ativação rápida. Somos uma loja especializada na venda de gift card digital para PlayStation, PSN, Xbox, Nintendo, Google Play, Steam e outras plataformas. Se você procura onde comprar gift card confiável, com envio automático e suporte eficiente, aqui é o lugar certo.</p>
           <p>
-            A Playce é o ponto certo pra quem vive o mundo gamer e curte praticidade. Lá você encontra de tudo pra turbinar sua jogatina: gift cards, créditos, assinaturas e códigos digitais pra PlayStation, Xbox, Nintendo, Steam, e até apps tipo Netflix e Spotify. Tudo 100% online — comprou, recebeu o código na hora e já pode usar.
+            Trabalhamos com código digital original, enviado por e-mail ou disponibilizado na área do cliente logo após a confirmação do pagamento. Nosso sistema é automatizado, garantindo agilidade na entrega e segurança na transação. Aceitamos Pix, cartão de crédito e outros meios de pagamento seguros, oferecendo praticidade para quem deseja comprar gift card online no Brasil.
             <br><br>
-            O site é rápido, fácil de navegar e sempre tem promoções e lançamentos atualizados. Se quiser aquele boost no game ou renovar a Plus/Game Pass sem dor de cabeça, a Playce resolve em poucos cliques. É a escolha ideal pra quem não quer esperar, só jogar.
+            Na Playce, você encontra gift card PSN Brasil, gift card Xbox Live, crédito Google Play, saldo Steam e cartões presente digitais com diferentes valores. Ideal para adicionar saldo à conta, comprar jogos, assinaturas, conteúdos extras, aplicativos, filmes e muito mais. Se você busca gift card barato, com preço competitivo e envio rápido, temos as melhores opções.
+            <br><br>
+            Nossa loja virtual é confiável, com proteção antifraude e atendimento especializado. Prezamos pela segurança dos dados, transparência nas informações e rapidez na liberação do código. Ao comprar gift card digital na Playce, você recebe um produto oficial, pronto para resgatar na plataforma desejada.
+            <br><br>
+            Seja para uso próprio ou para presentear, comprar gift card online é a forma mais prática e segura de adquirir créditos digitais. Escolha o valor, finalize a compra e receba seu código em poucos minutos. A Playce é referência em gift cards digitais com entrega rápida, suporte eficiente e experiência de compra simples.
+            <br><br>
+            Garanta agora seu gift card online com envio imediato e aproveite todas as vantagens de comprar em uma loja especializada, segura e focada em agilidade.
           </p>
         </div>
         <button class="about-banner-btn" type="button">
@@ -126,7 +132,7 @@ $('.pagina-inicial #barraNewsletter').before(`
         </button>
       </div>
       <div class="about-banner-image">
-        <img src="https://cdn.awsli.com.br/2830/2830294/arquivos/samurai.png" alt="Personagem Samurai" />
+        <img src="https://cdn.awsli.com.br/2391/2391623/arquivos/char-playce.png" alt="Personagem Samurai" />
       </div>
     </div>
     `);
