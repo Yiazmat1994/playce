@@ -849,15 +849,15 @@ $(document).on('click', '.btn-mais', function() {
                 <span class="icon-contato"></span>
                 <span class="floating-bar-label">Contato</span>
               </a>
-              <a class="floating-bar-item" href="/conta/login" onclick="window.location.href='/conta/login'; return false;">
+              <a class="floating-bar-item" href="https://www.playce.com.br/conta/login" onclick="window.location.href='/conta/login'; return false;">
                 <span class="icon-conta"></span>
                 <span class="floating-bar-label">Conta</span>
               </a>
-              <a class="floating-bar-item" href="/conta/pedido/listar" onclick="window.location.href='/conta/pedido/listar'; return false;">
+              <a class="floating-bar-item" href="https://www.playce.com.br/conta/pedido/listar" onclick="window.location.href='/conta/pedido/listar'; return false;">
                 <span class="icon-pedidos"></span>
                 <span class="floating-bar-label">Meus códigos</span>
               </a>
-              <!--<a class="floating-bar-item" href="/favoritos">
+              <!--<a class="floating-bar-item" href="https://www.playce.com.br/favoritos">
                 <span class="icon-favoritos"></span>
                 <span class="floating-bar-label">Favoritos</span>
               </a>-->
