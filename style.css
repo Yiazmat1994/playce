@@ -8266,13 +8266,14 @@ div#formasEnvio {
 
 .order-title {
 	display: flex;
-	font-size: 32px;
+	font-size: 22px;
 	font-weight: normal;
 	color: var(--color-black);
+   align-items: center;
 }
 
 .order-title * {
-	font-size: 32px !important;
+	font-size: 22px !important;
 	margin: 0;
 }
 
@@ -8320,11 +8321,15 @@ div#formasEnvio {
 .product-top {
 	display: flex;
 	gap: 10px;
-	font-size: 16px;
+	font-size: 14px;
 	color: var(--color-black);
 	padding: 16px;
 	background: #fff;
 	border-radius: 10px;
+}
+
+.product-top * {
+   text-align: left;
 }
 
 .product-top img {
@@ -8353,7 +8358,7 @@ div#formasEnvio {
 	border: 0;
 	margin: 20px 0 0;
 	color: #000;
-	font-size: 24px;
+	font-size: 22px;
 	text-align: left;
 }
 
@@ -8366,19 +8371,19 @@ div#formasEnvio {
 .resume-card .resume-row {
 	padding: 24px 32px;
 	border-bottom: 1px solid #e5e5e5;
-	font-size: 16px;
+	font-size: 14px;
 	display: flex;
 	justify-content: space-between !important;
 	color: #000;
 }
 
 .resume-card .resume-row.total span {
-	font-size: 20px;
+	font-size: 16px;
 	color: #000;
 }
 
 .resume-card .resume-row.total strong {
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: bold;
 }
 
