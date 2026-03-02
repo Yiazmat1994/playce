@@ -259,7 +259,7 @@ h6,
 .pagina-inicial {
    background-image: var(--bg-home);
    background-position: center 0px;
-   background-repeat: no-repeat;
+   background-repeat: repeat-x;
 }
 
 @media screen and (max-width: 768px) {
@@ -5174,10 +5174,11 @@ a.banner-featured.append-featured {
 
 .banner-featured.append-featured {
    align-items: flex-end;
-   margin-top: 10px;
    background: var(--featured-home-mobile) center no-repeat;
-   min-height: 700px;
+   min-height: 610px;
    background-size: 100%;
+   margin: 0 16px;
+   border-radius: 10px;
 }
 
 img.bn-featured-image {
@@ -8980,4 +8981,14 @@ a#imprimirBoleto {
    bottom: 0;
    right: 0;
 }
+}
+
+/* Altera texto do carrinho */
+
+.titulo-editando:after {
+	display: none;
+}
+
+.titulo-editando {
+	font-size: 15px!important;
 }

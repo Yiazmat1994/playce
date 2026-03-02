@@ -1201,7 +1201,7 @@ $(document).on('click', '.faq-pergunta', function() {
 });
 
 // Defina as variáveis de conteúdo
-var featuredImg = "https://cdn.awsli.com.br/2830/2830294/arquivos/gtavi.png";
+var featuredImg = "https://cdn.awsli.com.br/2391/2391623/arquivos/meio-desk.png";
 var featuredTitle = "GTA 6";
 var featuredText = "Será o oitavo título principal da franquia Grand Theft Auto, sendo o sucessor de GTA V.";
 var featuredLink = "#"; // Link alterável para o banner de destaque
@@ -1707,6 +1707,33 @@ $(document).on('click', '.limpar-todos-filtros', function (e) {
 $(window).on('resize', function () {
     montarHeaderMobile();
     montarFiltrosAtivosPagina();
+});
+
+/* =====================================================
+    ALTERA TEXTO DO CARRINHO
+===================================================== */
+
+function verificarEdicaoCliente() {
+    
+    if ($('.cliente-editar-dados-link:visible').length) {
+
+        $('#formularioEndereco')
+            .closest('fieldset')
+            .find('legend.titulo.cor-secundaria')
+            .text('Escolha a forma de envio')
+            .addClass('titulo-editando');
+
+    }
+}
+
+// roda ao carregar
+$(document).ready(function () {
+    verificarEdicaoCliente();
+});
+
+// roda novamente caso a página altere via ajax/dinâmico (checkout costuma fazer isso)
+$(document).ajaxComplete(function () {
+    verificarEdicaoCliente();
 });
 
 });
