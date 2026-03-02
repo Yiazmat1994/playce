@@ -97,7 +97,7 @@
          background: var(--featured-home) center no-repeat;
          background-color: transparent;
          margin-top: 50px;
-         background-size: 100%;
+         background-size: cover;
       }
 
       .container-featured {
