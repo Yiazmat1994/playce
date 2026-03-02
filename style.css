@@ -8657,7 +8657,12 @@ a#imprimirBoleto {
 	.pedido-finalizado #box-pagamento-pix button.pix-code-copy {
 		display: block;
 		height: 50px !important;
+      width: 100%;
 	}
+
+   .pedido-finalizado #box-pagamento-pix .pix-code #pix_code {
+      width: 100%;
+  }
 
 	.pedido-finalizado > .cabecalho-interno > .span8 {
 		width: 100%;
