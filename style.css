@@ -8265,11 +8265,11 @@ div#formasEnvio {
 }
 
 .order-title {
-	display: flex;
-	font-size: 22px;
-	font-weight: normal;
-	color: var(--color-black);
+   display: flex;
+   font-size: 20px;
+   color: var(--color-black);
    align-items: center;
+   font-weight: 600;
 }
 
 .order-title * {
@@ -8358,8 +8358,9 @@ div#formasEnvio {
 	border: 0;
 	margin: 20px 0 0;
 	color: #000;
-	font-size: 22px;
+	font-size: 20px;
 	text-align: left;
+   font-weight: 600;
 }
 
 .resume-card {
@@ -8378,12 +8379,12 @@ div#formasEnvio {
 }
 
 .resume-card .resume-row.total span {
-	font-size: 16px;
+	font-size: 14px;
 	color: #000;
 }
 
 .resume-card .resume-row.total strong {
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -8417,7 +8418,7 @@ div#formasEnvio {
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .order-info-item span {
