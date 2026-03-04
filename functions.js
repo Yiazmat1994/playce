@@ -1463,7 +1463,7 @@ var orderUrl = `https://www.playce.com.br/conta/pedido/${orderId}/listar_reduzid
 // =====================================================
 // PEDIDO PAGO (alert-success)
 // =====================================================
-var $successAlert = $('.status-pagamento .alert-success #mensagemPago');
+var $successAlert = $('.status-pagamento .alert-success #mensagemPago, .pedido-finalizado .cabecalho-interno .status-pagamento .p-enviado p.lead');
 
 if ($successAlert.length && !$successAlert.next('.acessar-pedido-wrapper').length) {
 $successAlert.after(`
