@@ -9062,3 +9062,11 @@ a#imprimirBoleto {
 #principal-konfidency > div:not(.konfidency-store-review), #principal-konfidency > p {
   display: none;
 }
+
+@media screen and (min-width: 768px) {
+
+   #principal-konfidency {
+      width: 319px;
+   }
+
+}
