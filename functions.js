@@ -1463,7 +1463,7 @@ var orderUrl = `https://www.playce.com.br/conta/pedido/${orderId}/listar_reduzid
 // =====================================================
 // PEDIDO PAGO (alert-success)
 // =====================================================
-var $successAlert = $('.status-pagamento .alert-success #mensagemPago, .status-pagamento .p-enviado p.lead');
+var $successAlert = $('.status-pagamento .alert-success #mensagemPago');
 
 if ($successAlert.length && !$successAlert.next('.acessar-pedido-wrapper').length) {
 $successAlert.after(`
@@ -1476,6 +1476,30 @@ $successAlert.after(`
     </p>
     </div>
 `);
+}
+
+// =====================================================
+// PEDIDO ENVIADO
+// =====================================================
+var $tituloStatus = $('.status-pagamento .mensagem h3');
+
+if ($tituloStatus.length && $tituloStatus.text().toLowerCase().includes('pedido enviado')) {
+
+    var $pedidoEnviadoAlert = $('.status-pagamento p.lead');
+
+    if ($pedidoEnviadoAlert.length && !$pedidoEnviadoAlert.next('.acessar-pedido-wrapper').length) {
+        $pedidoEnviadoAlert.after(`
+            <div class="acessar-pedido-wrapper pedido-pago">
+                <a href="${orderUrl}" class="botao principal acessar-pedido">
+                    Acessar pedido
+                </a>
+                <p class="acessar-pedido-texto">
+                    Você pode acompanhar os detalhes do seu pedido a qualquer momento.
+                </p>
+            </div>
+        `);
+    }
+
 }
 
 // =====================================================
