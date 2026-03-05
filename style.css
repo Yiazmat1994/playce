@@ -9024,3 +9024,41 @@ a#imprimirBoleto {
 .titulo-editando {
 	font-size: 15px!important;
 }
+
+/* Konfidency dinamico */
+
+#principal-konfidency > .konfidency-store-review .konfidency-badge.horizontal {
+   width: 100%!important;
+   box-sizing: border-box;
+   border: 0;
+   background: none;
+   margin: 0;
+   height: fit-content;
+}
+
+.konfidency-badge.light.horizontal .konfidency-badge-image {display: none;}
+
+.konfidency-badge.horizontal .konfidency-badge-text {
+   display: flex;
+   justify-content: center;
+   height: fit-content;
+   margin: 0!important;
+}
+
+.konfidency-badge.horizontal .konfidency-badge-rating .konfidency-badge-stars, .konfidency-badge.horizontal .konfidency-badge-rating::before {
+   height: 16px!important;
+   max-width: 83px!important;
+}
+
+.konfidency-badge.horizontal .konfidency-badge-rating {
+   max-width: 83px!important;
+   height: 16px!important;
+}
+
+.konfidency-badge.horizontal .konfidency-badge-content {
+   height: fit-content!important;
+}
+
+#principal-konfidency > div:not(.konfidency-store-review), #principal-konfidency > p {
+  display: none;
+}
