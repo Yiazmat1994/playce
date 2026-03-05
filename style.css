@@ -7883,7 +7883,7 @@ a.whatsapp-float-btn:before {
 
 /* Ajuste responsivo do header */
 
-@media screen and (min-width: 1440px) and (max-width: 1650px) {
+@media screen and (min-width: 1440px) and (max-width: 1670px) {
 	
 	.menu.superior .nivel-um>li {
     padding: 14px 8px;
