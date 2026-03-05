@@ -9036,26 +9036,26 @@ a#imprimirBoleto {
    height: fit-content;
 }
 
-.konfidency-badge.light.horizontal .konfidency-badge-image {display: none;}
+#principal-konfidency .konfidency-badge.light.horizontal .konfidency-badge-image {display: none;}
 
-.konfidency-badge.horizontal .konfidency-badge-text {
+#principal-konfidency .konfidency-badge.horizontal .konfidency-badge-text {
    display: flex;
    justify-content: center;
    height: fit-content;
    margin: 0!important;
 }
 
-.konfidency-badge.horizontal .konfidency-badge-rating .konfidency-badge-stars, .konfidency-badge.horizontal .konfidency-badge-rating::before {
+#principal-konfidency .konfidency-badge.horizontal .konfidency-badge-rating .konfidency-badge-stars, #principal-konfidency .konfidency-badge.horizontal .konfidency-badge-rating::before {
    height: 16px!important;
    max-width: 83px!important;
 }
 
-.konfidency-badge.horizontal .konfidency-badge-rating {
+#principal-konfidency .konfidency-badge.horizontal .konfidency-badge-rating {
    max-width: 83px!important;
    height: 16px!important;
 }
 
-.konfidency-badge.horizontal .konfidency-badge-content {
+#principal-konfidency .konfidency-badge.horizontal .konfidency-badge-content {
    height: fit-content!important;
 }
 
