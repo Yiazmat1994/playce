@@ -1763,3 +1763,120 @@ $(document).ajaxComplete(function () {
 $('#principal-konfidency').append('<div class="konfidency-store-review" data-type="horizontal" data-color="light"></div>');
 
 });
+
+$(document).ready(function () {
+
+    function getTotalCarrinho() {
+      let texto = $('.preco-carrinho-total').text();
+  
+      let valor = texto.replace('R$', '')
+        .replace(/\./g, '')
+        .replace(',', '.')
+        .trim();
+  
+      return parseFloat(valor) || 0;
+    }
+  
+    function abrirModalLimite() {
+      if ($('#modal-limite-boleto').length) return;
+  
+      $('body').append(`
+        <div id="modal-limite-boleto" style="
+          position: fixed;
+          top:0; left:0;
+          width:100%; height:100%;
+          background: rgba(0,0,0,0.6);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          z-index:9999;
+        ">
+          <div style="
+            background:#fff;
+            padding:20px;
+            border-radius:8px;
+            max-width:400px;
+            text-align:center;
+          ">
+            <h3>Limite do Boleto</h3>
+            <p>O valor máximo para pagamento via boleto é de <strong>R$ 2.500,00</strong>.</p>
+            <button id="fechar-modal-boleto" style="
+              margin-top:15px;
+              padding:10px 20px;
+              cursor:pointer;
+            ">Entendi</button>
+          </div>
+        </div>
+      `);
+    }
+  
+    function verificarBoleto(dispararModal = false) {
+      let boletoSelecionado = $('#radio-pagali-boleto-33').is(':checked');
+      let total = getTotalCarrinho();
+  
+      let $botaoFinalizar = $('.campos-pedido .acao-editar button:first-child');
+  
+      // Salva texto original só uma vez
+      if (!$botaoFinalizar.data('texto-original')) {
+        $botaoFinalizar.data('texto-original', $botaoFinalizar.text());
+      }
+  
+      if (boletoSelecionado && total > 2500) {
+  
+        if (dispararModal) {
+          abrirModalLimite();
+        }
+  
+        $botaoFinalizar
+          .prop('disabled', true)
+          .text('Limite máximo no boleto R$ 2500')
+          .css({
+            opacity: 0.5,
+            cursor: 'not-allowed'
+          });
+  
+        if ($('#btn-voltar-carrinho').length === 0) {
+          $botaoFinalizar.after(`
+            <a id="btn-voltar-carrinho" class="botao" style="
+              margin-left:10px;
+              padding:10px 15px;
+              cursor:pointer;
+              background: #f1f1f1;
+              color: #000!important;
+            ">
+              Alterar quantidade
+            </a>
+          `);
+        }
+  
+      } else {
+  
+        // Sempre volta pro texto original ao sair do boleto
+        $botaoFinalizar
+          .prop('disabled', false)
+          .text($botaoFinalizar.data('texto-original'))
+          .css({
+            opacity: '',
+            cursor: ''
+          });
+  
+        $('#btn-voltar-carrinho').remove();
+      }
+    }
+  
+    $(document).on('click', '#fechar-modal-boleto', function () {
+      $('#modal-limite-boleto').remove();
+    });
+  
+    $(document).on('click', '#btn-voltar-carrinho', function () {
+      window.location.href = './carrinho/index';
+    });
+  
+    $(document).on('change', 'input[name="forma_pagamento"]', function () {
+      let isBoleto = $('#radio-pagali-boleto-33').is(':checked');
+      verificarBoleto(isBoleto);
+    });
+  
+    verificarBoleto(false);
+  
+  });
