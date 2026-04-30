@@ -1821,7 +1821,7 @@ $(document).ready(function () {
         $botaoFinalizar.data('texto-original', $botaoFinalizar.text());
       }
   
-      if (boletoSelecionado && total > 2500) {
+      if (boletoSelecionado && total > 5500) {
   
         if (dispararModal) {
           abrirModalLimite();
@@ -1829,7 +1829,7 @@ $(document).ready(function () {
   
         $botaoFinalizar
           .prop('disabled', true)
-          .text('Limite máximo no boleto R$ 2500')
+          .text('Limite máximo no boleto R$ 5500')
           .css({
             opacity: 0.5,
             cursor: 'not-allowed'
