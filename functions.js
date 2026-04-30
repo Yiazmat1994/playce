@@ -1799,7 +1799,7 @@ $(document).ready(function () {
             text-align:center;
           ">
             <h3>Limite do Boleto</h3>
-            <p>O valor máximo para pagamento via boleto é de <strong>R$ 2.500,00</strong>.</p>
+            <p>O valor máximo para pagamento via boleto é de <strong>R$ 5.500,00</strong>.</p>
             <button id="fechar-modal-boleto" style="
               margin-top:15px;
               padding:10px 20px;
