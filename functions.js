@@ -1821,7 +1821,7 @@ $(document).ready(function () {
         $botaoFinalizar.data('texto-original', $botaoFinalizar.text());
       }
   
-      if (boletoSelecionado && total > 5500) {
+      if (boletoSelecionado && total > 500) {
   
         if (dispararModal) {
           abrirModalLimite();
