@@ -1811,7 +1811,7 @@ $(document).ready(function () {
     }
   
     function verificarBoleto(dispararModal = false) {
-      let boletoSelecionado = $('#radio-pagali-boleto-33').is(':checked');
+      let boletoSelecionado = $('#radio-proxy-pagali-v2-boleto-74').is(':checked');
       let total = getTotalCarrinho();
   
       let $botaoFinalizar = $('.campos-pedido .acao-editar button:first-child');
