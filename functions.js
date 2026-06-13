@@ -1873,7 +1873,7 @@ $(document).ready(function () {
     });
   
     $(document).on('change', 'input[name="forma_pagamento"]', function () {
-      let isBoleto = $('#radio-pagali-boleto-33').is(':checked');
+      let isBoleto = $('#radio-proxy-pagali-v2-boleto-74').is(':checked');
       verificarBoleto(isBoleto);
     });
   
