@@ -1799,7 +1799,7 @@ $(document).ready(function () {
             text-align:center;
           ">
             <h3>Limite do Boleto</h3>
-            <p>O valor máximo para pagamento via boleto é de <strong>R$ 2.000,00</strong>.</p>
+            <p>O valor máximo para pagamento via boleto é de <strong>R$ 5.000,00</strong>.</p>
             <button id="fechar-modal-boleto" style="
               margin-top:15px;
               padding:10px 20px;
@@ -1821,7 +1821,7 @@ $(document).ready(function () {
         $botaoFinalizar.data('texto-original', $botaoFinalizar.text());
       }
   
-      if (boletoSelecionado && total > 2000) {
+      if (boletoSelecionado && total > 5000) {
   
         if (dispararModal) {
           abrirModalLimite();
@@ -1829,7 +1829,7 @@ $(document).ready(function () {
   
         $botaoFinalizar
           .prop('disabled', true)
-          .text('Limite máximo no boleto R$ 2.000')
+          .text('Limite máximo no boleto R$ 5.000')
           .css({
             opacity: 0.5,
             cursor: 'not-allowed'
