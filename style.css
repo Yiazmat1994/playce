@@ -9068,9 +9068,9 @@ a#imprimirBoleto {
    height: fit-content!important;
 }
 
-#principal-konfidency > div:not(.konfidency-store-review), #principal-konfidency > p {
+/* #principal-konfidency > div:not(.konfidency-store-review), #principal-konfidency > p {
   display: none;
-}
+} */
 
 @media screen and (min-width: 768px) {
 
